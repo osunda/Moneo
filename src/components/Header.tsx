@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
 
@@ -19,22 +20,27 @@ export default function Header() {
         >
           <nav className="max-w-7xl mx-auto flex justify-between items-center">
             <motion.div
-              className="text-2xl font-bold"
+              className="relative w-48 h-12"
               whileHover={{ scale: 1.05 }}
             >
-              MoneoAI
+              <Image
+                src="/moneobanner.png"
+                alt="MoneoAI"
+                fill
+                className="object-contain"
+              />
             </motion.div>
             
-            <div className="hidden md:flex space-x-8 items-center">
-              <NavLink href="#features">Features</NavLink>
-              <NavLink href="#pricing">Pricing</NavLink>
-              <NavLink href="#Docs">Docs</NavLink>
+            <div className="hidden md:flex items-center gap-8">
+              <NavLink href="#security">Security</NavLink>
+              <NavLink href="#learn">Learn</NavLink>
+              <NavLink href="#explore">Explore</NavLink>
+              <NavLink href="#support">Support</NavLink>
               <motion.button
-                className="glass px-6 py-2 font-medium"
-                whileHover={{ scale: 1.05 }}
+                className="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full font-medium transition-colors"
                 whileTap={{ scale: 0.95 }}
               >
-                Try it for free
+                Download
               </motion.button>
             </div>
           </nav>
@@ -48,7 +54,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
   return (
     <Link href={href}>
       <motion.span 
-        className="text-gray-300 hover:text-white transition-colors"
+        className="text-[15px] text-gray-300 hover:text-white transition-colors"
         whileHover={{ y: -2 }}
       >
         {children}

@@ -1,64 +1,75 @@
 'use client';
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import WalletDemo from "./WalletDemo";
 
 export default function Hero() {
   return (
     <section className="pt-32 pb-16 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16">
-        <motion.div 
-          className="flex flex-col items-start max-w-2xl lg:max-w-[45%]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <motion.span 
-            className="text-sm font-medium mb-4 px-4 py-2 rounded-full bg-white/10"
-            whileHover={{ scale: 1.05 }}
-          >
-            MONEO V.0
-          </motion.span>
-          
-          <motion.h1 
-            className="text-5xl sm:text-7xl font-bold leading-tight mb-6"
-          >
-            Your Smart Wallet<br/>
-            <span className="text-pink-500 italic">Assistant</span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-lg text-gray-400 mb-8"
-          >
-            Simplify your crypto life with an AI agent that handles complex transactions, 
-            provides insights, and automates your daily crypto tasks. Save time and effort 
-            with intelligent batch processing.
-          </motion.p>
-          
-          <motion.div 
-            className="flex gap-4"
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-24">
+          <motion.p
+            className="text-gray-400 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
+            transition={{ duration: 0.5 }}
+          >
+            Swap, transact, and manage—instantly with AI
+          </motion.p>
+          
+          <motion.h1 
+            className="text-6xl md:text-7xl lg:text-8xl font-light leading-tight mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Your <span className="text-pink-500">wallet, </span><br/>
+            supercharged
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-col items-center gap-4"
           >
             <motion.button
-              className="glass px-8 py-4 font-medium"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="bg-pink-500 px-8 py-3 rounded-full font-medium flex items-center gap-3 overflow-hidden relative"
+              whileHover={{ 
+                scale: 1.03,
+                backgroundColor: "#F43F5E",
+                boxShadow: "0 0 20px rgba(244, 63, 94, 0.5)",
+                transition: { duration: 0.2 }
+              }}
+              initial={{ boxShadow: "0 0 0 rgba(244, 63, 94, 0)" }}
+              whileTap={{ scale: 0.98 }}
             >
-              Try it for free
+              <motion.div 
+                className="relative w-6 h-6"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src="/brave.png"
+                  alt="Brave Browser"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+              Download for Brave
             </motion.button>
-            <motion.a
-              href="#features"
-              className="flex items-center px-8 py-4 font-medium"
-              whileHover={{ x: 5 }}
-            >
-              Check out our features ↓
-            </motion.a>
+            <p className="text-sm text-gray-400">
+              Also available on other<br/>
+              browsers and devices.
+              <a href="#" className="text-pink-500 ml-1 hover:underline">
+                Discover more
+              </a>
+            </p>
           </motion.div>
-        </motion.div>
+        </div>
 
-        <div className="w-[440px] flex-shrink-0">
+        <div className="flex justify-center">
           <WalletDemo />
         </div>
       </div>

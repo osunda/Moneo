@@ -1,14 +1,23 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import WalletDemo from "./WalletDemo";
 
 export default function Hero() {
+  const { scrollY } = useScroll();
+  
+  const titleOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const titleY = useTransform(scrollY, [0, 300], [0, -100]);
+  const walletScale = useTransform(scrollY, [0, 300], [1, 1.2]);
+
   return (
     <section className="pt-32 pb-16 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-24">
+        <motion.div 
+          className="text-center mb-24"
+          style={{ opacity: titleOpacity, y: titleY }}
+        >
           <motion.p
             className="text-gray-400 mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -19,12 +28,12 @@ export default function Hero() {
           </motion.p>
           
           <motion.h1 
-            className="text-6xl md:text-7xl lg:text-8xl font-light leading-tight mb-12"
+            className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Your <span className="text-pink-500">wallet, </span><br/>
+            Your <span className="text-pink-500 italic">wallet, </span><br/>
             supercharged
           </motion.h1>
 
@@ -67,11 +76,14 @@ export default function Hero() {
               </a>
             </p>
           </motion.div>
-        </div>
+        </motion.div>
 
-        <div className="flex justify-center">
+        <motion.div 
+          className="flex justify-center"
+          style={{ scale: walletScale }}
+        >
           <WalletDemo />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -108,123 +108,154 @@ export default function WalletDemo() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
+      style={{
+        transform: 'translate3d(0, 0, 0)',
+        backfaceVisibility: 'hidden',
+        WebkitFontSmoothing: 'antialiased',
+        perspective: '1000px',
+        willChange: 'transform',
+      }}
     >
-      <div className="glass-darker p-6 rounded-2xl h-[600px] flex flex-col">
+      <div className="glass-darker p-6 rounded-2xl h-[600px] flex flex-col relative overflow-hidden">
+        {/* Border gradient */}
+        <div className="absolute inset-0 rounded-2xl border border-white/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 rounded-2xl" />
+
         {/* Wallet Header */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-6 relative">
           <div>
-            <h3 className="text-lg font-semibold">My Wallet</h3>
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+              My Wallet
+            </h3>
             <p className="text-sm text-gray-400">Updated just now</p>
           </div>
-          <button
-            className="h-10 w-10 rounded-full bg-pink-500/20 flex items-center justify-center transition-colors hover:bg-pink-500/30"
+          <motion.button
+            className="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 flex items-center justify-center"
+            whileHover={{ 
+              scale: 1.05,
+              background: "linear-gradient(to right, rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3))"
+            }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsChatOpen(!isChatOpen)}
           >
             <span className="text-pink-500 text-xl transition-transform duration-200" 
                   style={{ transform: isChatOpen ? 'rotate(45deg)' : 'none' }}>
-              {isChatOpen ? '��' : '+'}
+              {isChatOpen ? '×' : '+'}
             </span>
-          </button>
+          </motion.button>
         </div>
 
-        <div className="flex-grow overflow-hidden">
+        <div className="flex-grow overflow-hidden relative">
           {!isChatOpen ? (
             <div className="h-full flex flex-col">
               {/* Balance Card */}
-              <div className="bg-gradient-to-r from-pink-500/10 to-blue-500/10 p-6 rounded-xl mb-6 glass-darker">
+              <motion.div 
+                className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 p-6 rounded-xl mb-6 relative overflow-visible"
+                whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.02)" }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-50 rounded-xl" />
                 <p className="text-sm text-gray-400 mb-1">Total Balance</p>
-                <h2 className="text-3xl font-bold mb-4">$12,345.67</h2>
+                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  $12,345.67
+                </h2>
                 <div className="flex justify-between text-sm">
                   <span className="text-green-400">+2.4% ↑</span>
                   <span className="text-gray-400">This month</span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Tokens */}
-              <div className="flex-grow overflow-y-auto pr-1">
-                <h3 className="text-sm font-medium mb-3">Your Tokens</h3>
-                <div className="space-y-3">
-                  {tokens.map((token) => (
-                    <div
-                      key={token.symbol}
-                      className="glass p-3 rounded-lg transform-gpu hover:scale-[1.01] transition-transform duration-200"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                            <Image
-                              src={token.icon}
-                              alt={token.name}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <p className="font-medium">{token.name}</p>
-                              <p className="text-sm text-gray-400">${token.symbol}</p>
-                            </div>
-                            <p className="text-sm text-gray-400">{token.balance} {token.symbol}</p>
-                          </div>
+              <div className="flex-grow overflow-y-auto space-y-3 pr-2">
+                <h3 className="text-sm font-medium mb-3 text-gray-300">Your Tokens</h3>
+                {tokens.map((token) => (
+                  <div
+                    key={token.symbol}
+                    className="glass p-3 rounded-lg relative overflow-visible transition-colors duration-200 hover:bg-white/[0.03]"
+                  >
+                    <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity rounded-lg" />
+                    <div className="flex items-center justify-between relative">
+                      <div className="flex items-center gap-3">
+                        <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                          <Image
+                            src={token.icon}
+                            alt={token.name}
+                            fill
+                            className="object-cover"
+                            quality={95}
+                            loading="eager"
+                          />
                         </div>
-                        <div className="text-right">
-                          <p className="font-medium">{token.value}</p>
-                          <p className={`text-sm ${
-                            token.change.startsWith('+') ? 'text-green-400' : 'text-red-400'
-                          }`}>
-                            {token.change}
-                          </p>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium">{token.name}</p>
+                            <p className="text-sm text-gray-400">${token.symbol}</p>
+                          </div>
+                          <p className="text-sm text-gray-400">{token.balance} {token.symbol}</p>
                         </div>
                       </div>
+                      <div className="text-right">
+                        <p className="font-medium">{token.value}</p>
+                        <p className={`text-sm ${
+                          token.change.startsWith('+') ? 'text-green-400' : 'text-red-400'
+                        }`}>
+                          {token.change}
+                        </p>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
             <div className="h-full flex flex-col">
-              {/* Chat Messages */}
-              <div className="flex-grow overflow-y-auto mb-4 space-y-4">
+              {/* Chat Messages - adjusted padding and overflow */}
+              <div className="flex-grow overflow-y-auto mb-4 space-y-4 pr-2">
                 {messages.map((message) => (
-                  <div
+                  <motion.div
                     key={message.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-3 rounded-xl ${
+                      className={`max-w-[80%] p-3 rounded-xl relative overflow-visible ${
                         message.sender === 'user'
-                          ? 'bg-pink-500/10 glass-darker rounded-tr-none'
-                          : 'bg-blue-500/10 glass-darker rounded-tl-none'
+                          ? 'bg-pink-500/10 rounded-tr-none'
+                          : 'bg-purple-500/10 rounded-tl-none'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-50 rounded-xl" />
+                      <p className="text-sm whitespace-pre-line relative z-10">{message.text}</p>
+                      <p className="text-xs text-gray-400 mt-1 relative z-10">
                         {message.timestamp.toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit' 
                         })}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
               {/* Chat Input */}
-              <div className="flex gap-2">
+              <div className="flex gap-2 relative">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Ask anything about your finances..."
-                  className="flex-1 glass-darker rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50"
+                  className="flex-1 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50 placeholder-gray-500"
                 />
-                <button
+                <motion.button
                   onClick={handleSendMessage}
-                  className="glass p-2 rounded-lg transition-transform hover:scale-[1.05] active:scale-[0.98] duration-200"
+                  className="p-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <svg 
-                    className="w-5 h-5 text-pink-500"
+                    className="w-5 h-5 text-white"
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -236,16 +267,12 @@ export default function WalletDemo() {
                       d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" 
                     />
                   </svg>
-                </button>
+                </motion.button>
               </div>
             </div>
           )}
         </div>
       </div>
-
-      {/* Background Decorations */}
-      <div className="absolute -z-10 top-1/2 -translate-y-1/2 -right-20 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl" />
-      <div className="absolute -z-10 bottom-0 -right-20 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl" />
     </motion.div>
   );
 } 

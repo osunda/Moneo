@@ -9,7 +9,11 @@ export default function Hero() {
   
   const titleOpacity = useTransform(scrollY, [0, 300], [1, 0]);
   const titleY = useTransform(scrollY, [0, 300], [0, -100]);
-  const walletScale = useTransform(scrollY, [0, 300], [1, 1.2]);
+  
+  const walletY = useTransform(scrollY, [0, 300], [0, -50]);
+  const walletOpacity = useTransform(scrollY, [0, 300], [1, 1.1]);
+  const walletBlur = useTransform(scrollY, [0, 300], [0, 0.5]);
+  const glowOpacity = useTransform(scrollY, [0, 300], [0, 1]);
 
   return (
     <section className="pt-32 pb-16 px-6">
@@ -28,7 +32,7 @@ export default function Hero() {
           </motion.p>
           
           <motion.h1 
-            className="text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-12"
+            className="text-6xl md:text-7xl lg:text-8xl font-light leading-tight mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -80,7 +84,11 @@ export default function Hero() {
 
         <motion.div 
           className="flex justify-center"
-          style={{ scale: walletScale }}
+          style={{ 
+            y: walletY,
+            opacity: walletOpacity,
+            filter: `brightness(${walletBlur})`,
+          }}
         >
           <WalletDemo />
         </motion.div>

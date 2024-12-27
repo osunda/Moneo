@@ -66,7 +66,7 @@ body::after {
 
 /* Add a new class for darker cards */
 .glass-darker {
-  background: rgba(20, 20, 25, 0.95);
+  background: rgba(8, 8, 12, 0.98);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;

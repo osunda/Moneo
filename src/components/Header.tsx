@@ -24,7 +24,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
             >
               <Image
-                src="/moneobanner.png"
+                src="/neptume.png"
                 alt="MoneoAI"
                 fill
                 className="object-contain"
@@ -37,7 +37,7 @@ export default function Header() {
               <NavLink href="#explore">Explore</NavLink>
               <NavLink href="#support">Support</NavLink>
               <motion.button
-                className="bg-pink-500 hover:bg-pink-600 px-6 py-2 rounded-full font-medium transition-colors"
+                className="bg-[#31ef90] px-6 py-2 rounded-full font-medium text-[#011826] border-2 border-transparent transition-all duration-200 hover:bg-transparent hover:border-[#31ef90] hover:text-[#31ef90]"
                 whileTap={{ scale: 0.95 }}
               >
                 Download

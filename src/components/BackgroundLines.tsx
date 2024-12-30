@@ -1,101 +1,117 @@
-'use client';
+'use client'
 
-import { motion } from "framer-motion";
+import React, { useRef, useEffect } from 'react'
 
-export default function BackgroundLines() {
-  // Grid configuration
-  const horizontalLines = 5;
-  const verticalLines = 4;
-  const gridSpacing = 150; // pixels between lines
+interface Star {
+  x: number
+  y: number
+  radius: number
+  vx: number
+  vy: number
+  opacity: number
+}
 
-  return (
-    <div className="fixed inset-0 -z-10 bg-black/95">
-      {/* Horizontal grid lines */}
-      {[...Array(horizontalLines)].map((_, i) => (
-        <div
-          key={`h-${i}`}
-          className="absolute h-[1px] w-full overflow-hidden"
-          style={{
-            top: `${20 + i * gridSpacing}px`,
-          }}
-        >
-          {/* Static line (nearly invisible) */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              filter: 'blur(0.5px)',
-            }}
-          />
-          
-          {/* Traveling light */}
-          <motion.div
-            className="absolute h-full w-[200px]"
-            style={{
-              background: `linear-gradient(90deg, 
-                transparent 0%,
-                rgba(255, 0, 255, 0.8) 50%,
-                transparent 100%)`,
-              filter: 'blur(2px)',
-              x: '-100%',
-            }}
-            animate={{
-              x: ['-100%', '100vw'],
-            }}
-            transition={{
-              duration: 8,
-              delay: i * 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        </div>
-      ))}
+const BackgroundLines: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
-      {/* Vertical grid lines */}
-      {[...Array(verticalLines)].map((_, i) => (
-        <div
-          key={`v-${i}`}
-          className="absolute w-[1px] h-full overflow-hidden"
-          style={{
-            left: `${20 + i * gridSpacing}px`,
-          }}
-        >
-          {/* Static line (nearly invisible) */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'rgba(255, 255, 255, 0.02)',
-              filter: 'blur(0.5px)',
-            }}
-          />
-          
-          {/* Traveling light */}
-          <motion.div
-            className="absolute w-full h-[200px]"
-            style={{
-              background: `linear-gradient(to bottom, 
-                transparent 0%,
-                rgba(255, 0, 255, 0.8) 50%,
-                transparent 100%)`,
-              filter: 'blur(2px)',
-              y: '-100%',
-            }}
-            animate={{
-              y: ['-100%', '100vh'],
-            }}
-            transition={{
-              duration: 10,
-              delay: i * 2.5,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        </div>
-      ))}
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
 
-      {/* Subtle ambient glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-500/[0.02] via-transparent to-purple-500/[0.02] pointer-events-none" />
-    </div>
-  );
-} 
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const stars: Star[] = []
+    const STARS_PER_PIXEL = 0.0001 // Adjust this to control star density
+    let animationFrameId: number
+    let scrollOpacity = 1
+
+    const resizeCanvas = () => {
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = window.innerWidth * dpr
+      canvas.height = window.innerHeight * dpr
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+      ctx.scale(dpr, dpr)
+    }
+
+    const calculateNumStars = () => {
+      const screenArea = window.innerWidth * window.innerHeight
+      return Math.floor(screenArea * STARS_PER_PIXEL)
+    }
+
+    const createStar = (): Star => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      radius: Math.random() * 1.5 + 0.5,
+      vx: Math.random() * 0.2 - 0.1,
+      vy: Math.random() * 0.2 - 0.1,
+      opacity: Math.random()
+    })
+
+    const initStars = () => {
+      stars.length = 0
+      const numStars = calculateNumStars()
+      for (let i = 0; i < numStars; i++) {
+        stars.push(createStar())
+      }
+    }
+
+    const drawStar = (star: Star) => {
+      if (!ctx) return
+      ctx.beginPath()
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity * scrollOpacity})`
+      ctx.fill()
+    }
+
+    const updateStar = (star: Star) => {
+      star.x += star.vx
+      star.y += star.vy
+      star.opacity = Math.sin(Date.now() * 0.002 + star.x * 0.01) * 0.5 + 0.5
+
+      // Wrap around screen edges
+      if (star.x < 0) star.x = window.innerWidth
+      if (star.x > window.innerWidth) star.x = 0
+      if (star.y < 0) star.y = window.innerHeight
+      if (star.y > window.innerHeight) star.y = 0
+    }
+
+    const handleScroll = () => {
+      scrollOpacity = Math.max(0, 1 - window.scrollY / 700)
+    }
+
+    const animate = () => {
+      ctx.fillStyle = '#00060D'
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
+      
+      stars.forEach((star) => {
+        updateStar(star)
+        drawStar(star)
+      })
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    const handleResize = () => {
+      resizeCanvas()
+      initStars()
+    }
+
+    resizeCanvas()
+    initStars()
+    animate()
+
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-10" />
+}
+
+export default BackgroundLines 

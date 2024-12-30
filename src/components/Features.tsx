@@ -91,11 +91,13 @@ export default function Features() {
           </h2>
           
           <motion.button
-            className="bg-pink-500 px-8 py-3 rounded-full font-medium inline-flex items-center gap-3"
+            className="bg-[#31ef90] px-8 py-3 rounded-full font-medium inline-flex items-center gap-3 text-[#011826] border-2 border-transparent"
             whileHover={{ 
               scale: 1.03,
-              backgroundColor: "#F43F5E",
-              boxShadow: "0 0 20px rgba(244, 63, 94, 0.5)",
+              backgroundColor: "transparent",
+              borderColor: "#31ef90",
+              color: "#31ef90",
+              boxShadow: "0 0 20px rgba(49, 239, 144, 0.2)",
             }}
             whileTap={{ scale: 0.98 }}
           >

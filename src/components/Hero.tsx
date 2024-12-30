@@ -37,7 +37,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Your <span className="text-pink-500 italic">wallet, </span><br/>
+            Your <span className="text-[#31ef90] italic">wallet, </span><br/>
             supercharged
           </motion.h1>
 
@@ -48,14 +48,15 @@ export default function Hero() {
             className="flex flex-col items-center gap-4"
           >
             <motion.button
-              className="bg-pink-500 px-8 py-3 rounded-full font-medium flex items-center gap-3 overflow-hidden relative"
+              className="bg-[#31ef90] px-8 py-3 rounded-full font-medium flex items-center gap-3 text-[#011826] border-2 border-transparent"
               whileHover={{ 
                 scale: 1.03,
-                backgroundColor: "#F43F5E",
-                boxShadow: "0 0 20px rgba(244, 63, 94, 0.5)",
-                transition: { duration: 0.2 }
+                backgroundColor: "transparent",
+                borderColor: "#31ef90",
+                color: "#31ef90",
+                boxShadow: "0 0 20px rgba(49, 239, 144, 0.2)",
               }}
-              initial={{ boxShadow: "0 0 0 rgba(244, 63, 94, 0)" }}
+              initial={{ boxShadow: "0 0 0 rgba(23, 166, 85, 0)" }}
               whileTap={{ scale: 0.98 }}
             >
               <motion.div 
@@ -75,7 +76,7 @@ export default function Hero() {
             <p className="text-sm text-gray-400">
               Also available on other<br/>
               browsers and devices.
-              <a href="#" className="text-pink-500 ml-1 hover:underline">
+              <a href="#" className="text-[#31ef90] ml-1 hover:underline">
                 Discover more
               </a>
             </p>

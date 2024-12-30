@@ -117,28 +117,26 @@ export default function WalletDemo() {
       }}
     >
       <div className="glass-darker p-6 rounded-2xl h-[600px] flex flex-col relative overflow-hidden">
-        {/* Border gradient */}
-        <div className="absolute inset-0 rounded-2xl border border-white/5" />
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5 rounded-2xl" />
+        <div className="absolute inset-0 border border-white/5 rounded-2xl" />
 
         {/* Wallet Header */}
         <div className="flex justify-between items-center mb-6 relative">
           <div>
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold text-[#31ef90]">
               My Wallet
             </h3>
             <p className="text-sm text-gray-400">Updated just now</p>
           </div>
           <motion.button
-            className="h-10 w-10 rounded-full bg-gradient-to-r from-pink-500/20 to-purple-500/20 flex items-center justify-center"
+            className="h-10 w-10 rounded-full bg-[#011826]/20 flex items-center justify-center"
             whileHover={{ 
               scale: 1.05,
-              background: "linear-gradient(to right, rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3))"
+              backgroundColor: "rgba(49, 239, 144, 0.1)"
             }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsChatOpen(!isChatOpen)}
           >
-            <span className="text-pink-500 text-xl transition-transform duration-200" 
+            <span className="text-[#31ef90] text-xl transition-transform duration-200" 
                   style={{ transform: isChatOpen ? 'rotate(45deg)' : 'none' }}>
               {isChatOpen ? '×' : '+'}
             </span>
@@ -150,17 +148,16 @@ export default function WalletDemo() {
             <div className="h-full flex flex-col">
               {/* Balance Card */}
               <motion.div 
-                className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 p-6 rounded-xl mb-6 relative overflow-visible"
-                whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.02)" }}
+                className="bg-[#011826]/20 p-6 rounded-xl mb-6 relative"
+                whileHover={{ backgroundColor: "rgba(1, 24, 38, 0.3)" }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-50 rounded-xl" />
                 <p className="text-sm text-gray-400 mb-1">Total Balance</p>
-                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                <h2 className="text-3xl font-bold mb-4 text-[#31ef90]">
                   $12,345.67
                 </h2>
                 <div className="flex justify-between text-sm">
-                  <span className="text-green-400">+2.4% ↑</span>
+                  <span className="text-[#31ef90]">+2.4% ↑</span>
                   <span className="text-gray-400">This month</span>
                 </div>
               </motion.div>
@@ -171,9 +168,8 @@ export default function WalletDemo() {
                 {tokens.map((token) => (
                   <div
                     key={token.symbol}
-                    className="glass p-3 rounded-lg relative overflow-visible transition-colors duration-200 hover:bg-white/[0.03]"
+                    className="glass p-3 rounded-lg relative transition-all duration-200 hover:bg-[#011826]/30"
                   >
-                    <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-0 hover:opacity-100 transition-opacity rounded-lg" />
                     <div className="flex items-center justify-between relative">
                       <div className="flex items-center gap-3">
                         <div className="relative w-8 h-8 rounded-full overflow-hidden">
@@ -219,15 +215,14 @@ export default function WalletDemo() {
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-3 rounded-xl relative overflow-visible ${
+                      className={`max-w-[80%] p-3 rounded-xl relative ${
                         message.sender === 'user'
-                          ? 'bg-pink-500/10 rounded-tr-none'
-                          : 'bg-purple-500/10 rounded-tl-none'
+                          ? 'bg-[#011826]/20 rounded-tr-none'
+                          : 'bg-[#31ef90]/10 rounded-tl-none'
                       }`}
                     >
-                      <div className="absolute inset-[-1px] bg-gradient-to-r from-pink-500/5 to-purple-500/5 opacity-50 rounded-xl" />
-                      <p className="text-sm whitespace-pre-line relative z-10">{message.text}</p>
-                      <p className="text-xs text-gray-400 mt-1 relative z-10">
+                      <p className="text-sm whitespace-pre-line">{message.text}</p>
+                      <p className="text-xs text-gray-400 mt-1">
                         {message.timestamp.toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit' 
@@ -246,11 +241,11 @@ export default function WalletDemo() {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Ask anything about your finances..."
-                  className="flex-1 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50 placeholder-gray-500"
+                  className="flex-1 bg-[#011826]/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#31ef90]/50 placeholder-gray-500"
                 />
                 <motion.button
                   onClick={handleSendMessage}
-                  className="p-2 rounded-lg bg-gradient-to-r from-pink-500 to-purple-500"
+                  className="p-2 rounded-lg bg-gradient-to-r from-[#011511] to-[#31ef90]"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

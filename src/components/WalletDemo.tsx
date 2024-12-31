@@ -104,7 +104,7 @@ export default function WalletDemo() {
 
   return (
     <motion.div
-      className="relative w-[440px]"
+      className="relative w-[365px]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -165,9 +165,9 @@ export default function WalletDemo() {
               {/* Tokens */}
               <div className="flex-grow overflow-y-auto space-y-3 pr-2">
                 <h3 className="text-sm font-medium mb-3 text-gray-300">Your Tokens</h3>
-                {tokens.map((token) => (
+                {tokens.map((token, index) => (
                   <div
-                    key={token.symbol}
+                    key={`token-${index}`}
                     className="glass p-3 rounded-lg relative transition-all duration-200 hover:bg-[#011826]/30"
                   >
                     <div className="flex items-center justify-between relative">
@@ -205,11 +205,11 @@ export default function WalletDemo() {
             </div>
           ) : (
             <div className="h-full flex flex-col">
-              {/* Chat Messages - adjusted padding and overflow */}
+              {/* Chat Messages */}
               <div className="flex-grow overflow-y-auto mb-4 space-y-4 pr-2">
-                {messages.map((message) => (
+                {messages.map((message, index) => (
                   <motion.div
-                    key={message.id}
+                    key={`message-${index}`}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -217,12 +217,12 @@ export default function WalletDemo() {
                     <div
                       className={`max-w-[80%] p-3 rounded-xl relative ${
                         message.sender === 'user'
-                          ? 'bg-[#011826]/20 rounded-tr-none'
-                          : 'bg-[#31ef90]/10 rounded-tl-none'
+                          ? 'bg-[#31ef90]/10 rounded-br-none'
+                          : 'bg-[#011826]/40 rounded-bl-none'
                       }`}
                     >
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-sm text-white/90 whitespace-pre-line">{message.text}</p>
+                      <p className="text-[11px] text-white/40 mt-1">
                         {message.timestamp.toLocaleTimeString([], { 
                           hour: '2-digit', 
                           minute: '2-digit' 
@@ -234,23 +234,23 @@ export default function WalletDemo() {
               </div>
 
               {/* Chat Input */}
-              <div className="flex gap-2 relative">
+              <div className="relative flex gap-2 bg-[#011826]/40 p-2 rounded-xl">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Ask anything about your finances..."
-                  className="flex-1 bg-[#011826]/20 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#31ef90]/50 placeholder-gray-500"
+                  placeholder="Type a message..."
+                  className="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none placeholder-white/40 text-white/90"
                 />
                 <motion.button
                   onClick={handleSendMessage}
-                  className="p-2 rounded-lg bg-gradient-to-r from-[#011511] to-[#31ef90]"
+                  className="p-2 rounded-lg bg-[#31ef90] hover:bg-[#31ef90]/80 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <svg 
-                    className="w-5 h-5 text-white"
+                    className="w-5 h-5 text-[#011826]"
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"

@@ -29,6 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <BackgroundLines />
+        <div id="heroGradient" className="hero-gradient" />
         {children}
       </body>
     </html>

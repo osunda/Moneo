@@ -4,16 +4,19 @@ import { motion } from "framer-motion";
 
 const features = [
   {
+    id: 1,
     title: "Manage your wallet",
     description: "Your AI assistant for managing crypto. Ask questions, perform actions, and get insights instantly.",
     video: "/videos/chat-demo.mp4", // Add your video files
   },
   {
+    id: 2, 
     title: "Batch Transactions",
     description: "Swap multiple tokens at once. No more tedious individual transactions.",
     video: "/videos/batch-demo.mp4",
   },
   {
+    id: 3,
     title: "Smart Analysis",
     description: "Get real-time insights into your portfolio and trading patterns.",
     video: "/videos/analysis-demo.mp4",
@@ -23,8 +26,8 @@ const features = [
 export default function Features() {
   return (
     <>
-      <section className="py-20 px-6" id="features">
-        <div className="max-w-7xl mx-auto">
+      <section className="min-h-screen py-32 px-4" id="features">
+        <div className="max-w-[1600px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -39,15 +42,15 @@ export default function Features() {
           </motion.div>
 
           <div className="space-y-32">
-            {features.map((feature, i) => (
+            {features.map((feature, index) => (
               <motion.div
-                key={feature.title}
+                key={feature.id}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.7 }}
                 className={`flex items-center gap-16 ${
-                  i % 2 === 1 ? 'flex-row-reverse' : ''
+                  index % 2 === 1 ? 'flex-row-reverse' : ''
                 }`}
               >
                 <div className="flex-1">
@@ -58,7 +61,7 @@ export default function Features() {
                 </div>
                 
                 <div className="flex-1">
-                  <div className="w-[440px] h-[600px] glass-darker rounded-2xl overflow-hidden">
+                  <div className="w-[365px] h-[600px] glass-darker rounded-2xl overflow-hidden">
                     <video
                       autoPlay
                       loop
@@ -77,13 +80,13 @@ export default function Features() {
       </section>
 
       {/* Download Section */}
-      <section className="py-32 px-6 relative overflow-hidden">
+      <section className="py-32 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-blue-500/10 opacity-30" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-7xl mx-auto text-center relative z-10"
+          className="max-w-[1600px] mx-auto text-center relative z-10"
         >
           <h2 className="text-4xl md:text-5xl font-light mb-8">
             Use MoneoAI in <br/>

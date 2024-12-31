@@ -3,97 +3,119 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import WalletDemo from "./WalletDemo";
+import { useGradientScroll } from '@/hooks/useGradientScroll';
 
 export default function Hero() {
+  useGradientScroll();
   const { scrollY } = useScroll();
   
   const titleOpacity = useTransform(scrollY, [0, 300], [1, 0]);
   const titleY = useTransform(scrollY, [0, 300], [0, -100]);
   
-  const walletY = useTransform(scrollY, [0, 300], [0, -50]);
-  const walletOpacity = useTransform(scrollY, [0, 300], [1, 1.1]);
+  const walletY = useTransform(scrollY, [0, 300], [0, -100]);
+  const walletOpacity = useTransform(scrollY, [0, 300], [1, 0]);
   const walletBlur = useTransform(scrollY, [0, 300], [0, 0.5]);
-  const glowOpacity = useTransform(scrollY, [0, 300], [0, 1]);
+
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section className="pt-32 pb-16 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
-          className="text-center mb-24"
-          style={{ opacity: titleOpacity, y: titleY }}
-        >
-          <motion.p
-            className="text-gray-400 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Swap, transact, and manage—instantly with AI
-          </motion.p>
-          
-          <motion.h1 
-            className="text-6xl md:text-7xl lg:text-8xl font-light leading-tight mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Your <span className="text-[#31ef90] italic">wallet, </span><br/>
-            supercharged
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col items-center gap-4"
-          >
-            <motion.button
-              className="bg-[#31ef90] px-8 py-3 rounded-full font-medium flex items-center gap-3 text-[#011826] border-2 border-transparent"
-              whileHover={{ 
-                scale: 1.03,
-                backgroundColor: "transparent",
-                borderColor: "#31ef90",
-                color: "#31ef90",
-                boxShadow: "0 0 20px rgba(49, 239, 144, 0.2)",
-              }}
-              initial={{ boxShadow: "0 0 0 rgba(23, 166, 85, 0)" }}
-              whileTap={{ scale: 0.98 }}
+    <section className="min-h-screen flex items-center px-4 relative pt-24 lg:pt-0">
+      <div className="max-w-[1600px] mx-auto w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24 relative">
+          {/* Left side - Text content */}
+          <div className="flex-1 max-w-[650px] w-full text-center lg:text-left z-10">
+            <motion.div
+              style={{ opacity: titleOpacity, y: titleY }}
+              className="space-y-6"
             >
-              <motion.div 
-                className="relative w-6 h-6"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Image
-                  src="/brave.png"
-                  alt="Brave Browser"
-                  fill
-                  className="object-contain"
-                />
-              </motion.div>
-              Download for Brave
-            </motion.button>
-            <p className="text-sm text-gray-400">
-              Also available on other<br/>
-              browsers and devices.
-              <a href="#" className="text-[#31ef90] ml-1 hover:underline">
-                Discover more
-              </a>
-            </p>
-          </motion.div>
-        </motion.div>
+              <p className="text-gray-400 text-lg">
+                Swap, transact, and manage—instantly with AI
+              </p>
+              
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light leading-[1.1]">
+                <span className="inline-flex gap-4">
+                  Your <span className="text-[#31ef90] italic">wallet,</span>
+                </span>
+                <br/>
+                supercharged
+              </h1>
 
-        <motion.div 
-          className="flex justify-center"
-          style={{ 
-            y: walletY,
-            opacity: walletOpacity,
-            filter: `brightness(${walletBlur})`,
-          }}
-        >
-          <WalletDemo />
-        </motion.div>
+              <div className="flex flex-col items-center lg:items-start gap-3">
+                <div className="flex items-center gap-4">
+                  <button
+                    className="bg-[#31ef90] px-12 py-4 rounded-xl font-medium flex items-center gap-3 text-[#011826] border-2 border-transparent w-fit hover:bg-transparent hover:border-[#31ef90] hover:text-[#31ef90] transition-all duration-200"
+                  >
+                    <div className="relative w-6 h-6">
+                      <Image
+                        src="/brave.png"
+                        alt="Brave Browser"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    Download for Brave
+                  </button>
+
+                  <div className="flex gap-8 text-sm text-gray-400">
+                    <div>
+                      <div className="text-white text-xl font-bold">50K+</div>
+                      <div>Active users</div>
+                    </div>
+                    <div>
+                      <div className="text-white text-xl font-bold">$2M+</div>
+                      <div>Daily volume</div>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-sm text-gray-400">
+                  Also available on other browsers and devices.
+                  <a href="#" className="text-[#31ef90] ml-1 hover:underline">
+                    Discover more
+                  </a>
+                </p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right side - Wallet Demo */}
+          <motion.div 
+            className="flex-1 flex justify-center lg:justify-end scale-90 lg:scale-[1.35] -mt-12 lg:mt-0"
+            style={{ 
+              y: walletY,
+              opacity: walletOpacity,
+              filter: `brightness(${walletBlur})`,
+            }}
+          >
+            <WalletDemo />
+          </motion.div>
+        </div>
       </div>
+
+      <button
+        onClick={scrollToFeatures}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-[#011826]/40 border border-[#31ef90]/20 hidden lg:flex items-center justify-center group hover:bg-[rgba(49,239,144,0.1)] hover:border-[rgba(49,239,144,0.4)] transition-all duration-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 text-[#31ef90] transform transition-transform duration-200 group-hover:translate-y-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          />
+        </svg>
+      </button>
     </section>
   );
 } 

@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="py-12 px-6 border-t border-white/10">
-      <div className="max-w-7xl mx-auto">
+    <footer className="py-12 px-4 border-t border-white/10">
+      <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">WalletAI</h3>

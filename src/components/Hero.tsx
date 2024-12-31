@@ -4,17 +4,35 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import WalletDemo from "./WalletDemo";
 import { useGradientScroll } from '@/hooks/useGradientScroll';
+import { useEffect } from 'react';
 
 export default function Hero() {
   useGradientScroll();
   const { scrollY } = useScroll();
   
-  const titleOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const titleY = useTransform(scrollY, [0, 300], [0, -100]);
+  // Different fade points for mobile and desktop
+  const fadeOutPoint = typeof window !== 'undefined' ? 
+    window.innerWidth < 768 ? 500 : 300 : 300; // Default to 300 during SSR
   
-  const walletY = useTransform(scrollY, [0, 300], [0, -100]);
-  const walletOpacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const walletBlur = useTransform(scrollY, [0, 300], [0, 0.5]);
+  // Update the transform ranges
+  const titleOpacity = useTransform(scrollY, [0, fadeOutPoint], [1, 0]);
+  const titleY = useTransform(scrollY, [0, fadeOutPoint], [0, -100]);
+  
+  const walletY = useTransform(scrollY, [0, fadeOutPoint], [0, -100]);
+  const walletOpacity = useTransform(scrollY, [0, fadeOutPoint], [1, 0]);
+  const walletBlur = useTransform(scrollY, [0, fadeOutPoint], [0, 0.5]);
+
+  // Add effect to update fade point on resize
+  useEffect(() => {
+    const handleResize = () => {
+      const newFadePoint = window.innerWidth < 768 ? 500 : 300;
+      titleOpacity.set(window.scrollY > newFadePoint ? 0 : 1);
+      walletOpacity.set(window.scrollY > newFadePoint ? 0 : 1);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [titleOpacity, walletOpacity]);
 
   const scrollToFeatures = () => {
     const featuresSection = document.getElementById('features');

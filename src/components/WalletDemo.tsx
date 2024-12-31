@@ -12,6 +12,7 @@ type Message = {
 };
 
 type Token = {
+  id: string;
   name: string;
   symbol: string;
   balance: string;
@@ -22,6 +23,7 @@ type Token = {
 
 const tokens: Token[] = [
   {
+    id: 'ethereum-token',
     name: "Ethereum",
     symbol: "ETH",
     balance: "1.45",
@@ -30,6 +32,7 @@ const tokens: Token[] = [
     icon: "/ether.jpg"
   },
   {
+    id: 'pepe-token',
     name: "PepeCoin",
     symbol: "PEPE",
     balance: "1,234,567",
@@ -38,6 +41,7 @@ const tokens: Token[] = [
     icon: "/pepe.png"
   },
   {
+    id: 'doge-token',
     name: "Dogecoin",
     symbol: "DOGE",
     balance: "15,234",
@@ -51,9 +55,9 @@ export default function WalletDemo() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: '1',
+      id: 'ai-message-initial',
       text: "Hi! I'm your AI assistant. I can help you manage your crypto and analyze your finances. Try asking me something!",
-      sender: 'ai',
+      sender: 'ai' as const,
       timestamp: new Date()
     }
   ]);
@@ -63,9 +67,9 @@ export default function WalletDemo() {
     if (!inputText.trim()) return;
 
     const userMessage: Message = {
-      id: Date.now().toString(),
+      id: `user-message-${Date.now()}`,
       text: inputText,
-      sender: 'user',
+      sender: 'user' as const,
       timestamp: new Date()
     };
 
@@ -74,9 +78,9 @@ export default function WalletDemo() {
 
     setTimeout(() => {
       const aiResponse: Message = {
-        id: (Date.now() + 1).toString(),
+        id: `ai-message-${Date.now()}`,
         text: generateAIResponse(inputText),
-        sender: 'ai',
+        sender: 'ai' as const,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, aiResponse]);
@@ -104,7 +108,7 @@ export default function WalletDemo() {
 
   return (
     <motion.div
-      className="relative w-[365px]"
+      className="relative w-[400px]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -116,7 +120,7 @@ export default function WalletDemo() {
         willChange: 'transform',
       }}
     >
-      <div className="glass-darker p-6 rounded-2xl h-[600px] flex flex-col relative overflow-hidden">
+      <div className="glass-darker p-6 rounded-2xl h-[660px] flex flex-col relative overflow-hidden">
         <div className="absolute inset-0 border border-white/5 rounded-2xl" />
 
         {/* Wallet Header */}
@@ -165,9 +169,9 @@ export default function WalletDemo() {
               {/* Tokens */}
               <div className="flex-grow overflow-y-auto space-y-3 pr-2">
                 <h3 className="text-sm font-medium mb-3 text-gray-300">Your Tokens</h3>
-                {tokens.map((token, index) => (
+                {tokens.map((token) => (
                   <div
-                    key={`token-${index}`}
+                    key={token.id}
                     className="glass p-3 rounded-lg relative transition-all duration-200 hover:bg-[#011826]/30"
                   >
                     <div className="flex items-center justify-between relative">
@@ -207,9 +211,9 @@ export default function WalletDemo() {
             <div className="h-full flex flex-col">
               {/* Chat Messages */}
               <div className="flex-grow overflow-y-auto mb-4 space-y-4 pr-2">
-                {messages.map((message, index) => (
+                {messages.map((message) => (
                   <motion.div
-                    key={`message-${index}`}
+                    key={message.id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}

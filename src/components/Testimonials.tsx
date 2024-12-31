@@ -4,16 +4,19 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
+    id: 'trader-testimonial',
     quote: "Swapped 20 different tokens in one go. What used to take me an hour now takes seconds. This is game-changing!",
     author: "Alex Thompson",
     role: "Crypto Trader"
   },
   {
+    id: 'defi-testimonial',
     quote: "The transaction analysis helped me understand my trading patterns. I'm making better decisions thanks to the AI insights.",
     author: "Sarah Chen",
     role: "DeFi Enthusiast"
   },
   {
+    id: 'meme-testimonial',
     quote: "Finally, a wallet assistant that actually understands what I need. Batch transactions are a lifesaver.",
     author: "Michael Roberts",
     role: "Meme Coin Trader"
@@ -40,7 +43,7 @@ export default function Testimonials() {
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={`testimonial-${index}`}
+              key={testimonial.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

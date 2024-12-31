@@ -27,7 +27,7 @@ export default function Header() {
             >
               <Image
                 src="/neptume.png"
-                alt="MoneoAI"
+                alt="Neptume"
                 fill
                 className="object-contain"
               />

@@ -4,20 +4,20 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    id: 1,
+    id: "wallet-management-feature",
     title: "Manage your wallet",
     description: "Your AI assistant for managing crypto. Ask questions, perform actions, and get insights instantly.",
-    video: "/videos/chat-demo.mp4", // Add your video files
+    video: "/videos/chat-demo.mp4",
   },
   {
-    id: 2, 
+    id: "batch-transactions-feature", 
     title: "Batch Transactions",
     description: "Swap multiple tokens at once. No more tedious individual transactions.",
     video: "/videos/batch-demo.mp4",
   },
   {
-    id: 3,
-    title: "Smart Analysis",
+    id: "smart-analysis-feature",
+    title: "Smart Analysis", 
     description: "Get real-time insights into your portfolio and trading patterns.",
     video: "/videos/analysis-demo.mp4",
   }
@@ -61,7 +61,7 @@ export default function Features() {
                 </div>
                 
                 <div className="flex-1">
-                  <div className="w-[365px] h-[600px] glass-darker rounded-2xl overflow-hidden">
+                  <div className="w-[400px] h-[660px] glass-darker rounded-2xl overflow-hidden">
                     <video
                       autoPlay
                       loop

@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-[1600px] mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">WalletAI</h3>
+            <h3 className="text-xl font-bold mb-4">NeptumeAI</h3>
             <p className="text-gray-400">Simplifying crypto transactions with intelligent automation and batch processing.</p>
           </div>
           <div>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
-          <p>© 2024 WalletAI. All rights reserved.</p>
+          <p>© 2025 NeptumeAI. All rights reserved.</p>
         </div>
       </div>
     </footer>

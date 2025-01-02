@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import DownloadSection from "./DownloadSection";
 
 const features = [
   {
@@ -79,35 +80,7 @@ export default function Features() {
         </div>
       </section>
 
-      {/* Download Section */}
-      <section className="py-32 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-blue-500/10 opacity-30" />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-[1600px] mx-auto text-center relative z-10"
-        >
-          <h2 className="text-4xl md:text-5xl font-light mb-8">
-            Use MoneoAI in <br/>
-            any wallet
-          </h2>
-          
-          <motion.button
-            className="bg-[#31ef90] px-8 py-3 rounded-full font-medium inline-flex items-center gap-3 text-[#011826] border-2 border-transparent"
-            whileHover={{ 
-              scale: 1.03,
-              backgroundColor: "transparent",
-              borderColor: "#31ef90",
-              color: "#31ef90",
-              boxShadow: "0 0 20px rgba(49, 239, 144, 0.2)",
-            }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Download now
-          </motion.button>
-        </motion.div>
-      </section>
+      <DownloadSection />
     </>
   );
 } 

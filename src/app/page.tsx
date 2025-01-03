@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Features from "../components/Features";
-import Testimonials from "../components/Testimonials";
+import SupportedChains from '@/components/SupportedChains';
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
     <>
       <Header />
       <Hero />
+      <SupportedChains />
       <Features />
-      <Testimonials />
       <Footer />
     </>
   );

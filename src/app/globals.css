@@ -20,8 +20,15 @@ body {
   font-family: var(--font-geist-sans);
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
+  width: 100%;
 }
 
+/* Optional: If you want to ensure all content stays within viewport width */
+* {
+  max-width: 100vw;
+  box-sizing: border-box;
+}
 
 .glass {
   background: rgba(1, 24, 38, 0.3);
@@ -64,3 +71,21 @@ body {
 }
 
 /* Remove the animation and blur filter */
+
+@keyframes loop-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-loop-scroll {
+  animation: loop-scroll 20s linear infinite;
+}
+
+/* Optional: Pause animation on hover */
+.animate-loop-scroll:hover {
+  animation-play-state: paused;
+}

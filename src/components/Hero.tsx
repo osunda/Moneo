@@ -114,26 +114,6 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-
-      <button
-        onClick={scrollToFeatures}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-[#011826]/40 border border-[#31ef90]/20 hidden lg:flex items-center justify-center group hover:bg-[rgba(49,239,144,0.1)] hover:border-[rgba(49,239,144,0.4)] transition-all duration-200"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 text-[#31ef90] transform transition-transform duration-200 group-hover:translate-y-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 14l-7 7m0 0l-7-7m7 7V3"
-          />
-        </svg>
-      </button>
     </section>
   );
 } 

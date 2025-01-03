@@ -109,30 +109,6 @@ export default function DownloadSection() {
         ref={canvasRef}
         className="absolute inset-0 z-0"
       />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-[1600px] mx-auto text-center relative z-10"
-      >
-        <h2 className="text-3xl md:text-5xl font-light mb-6 md:mb-8">
-          Use NeptumeAI in <br className="md:block hidden"/>
-          any wallet
-        </h2>
-        <motion.button
-          className="bg-[#31ef90] px-6 md:px-8 py-2.5 md:py-3 rounded-full font-medium inline-flex items-center gap-3 text-[#011826] border-2 border-transparent text-sm md:text-base"
-          whileHover={{ 
-            scale: 1.03,
-            backgroundColor: "transparent",
-            borderColor: "#31ef90",
-            color: "#31ef90",
-            boxShadow: "0 0 20px rgba(49, 239, 144, 0.2)",
-          }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Download now
-        </motion.button>
-      </motion.div>
     </section>
   );
 } 

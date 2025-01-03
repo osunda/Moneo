@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./hero.css";
 import BackgroundLines from '@/components/BackgroundLines';
 import DiscordPopup from '@/components/DiscordPopup';
 

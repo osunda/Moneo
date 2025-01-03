@@ -42,20 +42,21 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center px-4 relative pt-24 lg:pt-0">
+    <section className="min-h-screen flex items-center px-4 relative pt-20 md:pt-24 lg:pt-0">
       <div className="max-w-[1600px] mx-auto w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24 relative">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 relative z-10">
           {/* Left side - Text content */}
           <div className="flex-1 max-w-[650px] w-full text-center lg:text-left z-10">
             <motion.div
               style={{ opacity: titleOpacity, y: titleY }}
-              className="space-y-6"
+              className="space-y-4 md:space-y-6"
             >
-              <p className="text-gray-400 text-lg">
-                Swap, transact, and manage—instantly with AI
-              </p>
-              
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light leading-[1.1]">
+              <span 
+                className="inline-block px-4 py-1 text-sm font-medium text-blue-400 bg-blue-900/30 rounded-full"
+              >
+                MULTI-CHAIN SUPPORT
+              </span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold leading-[1.1]">
                 <span className="inline-flex gap-4">
                   Your <span className="text-[#31ef90] italic">wallet,</span>
                 </span>
@@ -63,47 +64,32 @@ export default function Hero() {
                 supercharged
               </h1>
 
-              <div className="flex flex-col items-center lg:items-start gap-3">
-                <div className="flex items-center gap-4">
-                  <button
-                    className="bg-[#31ef90] px-12 py-4 rounded-xl font-medium flex items-center gap-3 text-[#011826] border-2 border-transparent w-fit hover:bg-transparent hover:border-[#31ef90] hover:text-[#31ef90] transition-all duration-200"
-                  >
-                    <div className="relative w-6 h-6">
-                      <Image
-                        src="/brave.png"
-                        alt="Brave Browser"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    Download for Brave
-                  </button>
+              <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                Experience seamless crypto management across multiple chains. 
+                Trade, swap, and manage your assets with AI-powered intelligence.
+              </p>
 
-                  <div className="flex gap-8 text-sm text-gray-400">
-                    <div>
-                      <div className="text-white text-xl font-bold">50K+</div>
-                      <div>Active users</div>
-                    </div>
-                    <div>
-                      <div className="text-white text-xl font-bold">$2M+</div>
-                      <div>Daily volume</div>
-                    </div>
+              <div className="flex flex-col items-center lg:items-start gap-3 pt-2">
+                <button
+                  className="bg-[#31ef90] px-6 sm:px-7 py-2.5 sm:py-3 rounded-xl font-medium flex items-center gap-2.5 text-[#011826] border border-transparent w-fit hover:bg-transparent hover:border-[#31ef90] hover:text-[#31ef90] transition-all duration-200"
+                >
+                  <div className="relative w-4 sm:w-[18px] h-4 sm:h-[18px]">
+                    <Image
+                      src="/brave.png"
+                      alt="Brave Browser"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
-                </div>
-
-                <p className="text-sm text-gray-400">
-                  Also available on other browsers and devices.
-                  <a href="#" className="text-[#31ef90] ml-1 hover:underline">
-                    Discover more
-                  </a>
-                </p>
+                  Download for Brave
+                </button>
               </div>
             </motion.div>
           </div>
 
           {/* Right side - Wallet Demo */}
           <motion.div 
-            className="flex-1 flex justify-center lg:justify-end scale-90 lg:scale-[1.35] -mt-12 lg:mt-0"
+            className="flex-1 flex justify-center lg:justify-end scale-[0.85] sm:scale-90 lg:scale-[1.35] -mt-8 sm:-mt-12 lg:mt-0 z-20"
             style={{ 
               y: walletY,
               opacity: walletOpacity,

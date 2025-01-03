@@ -120,19 +120,17 @@ export default function WalletDemo() {
         willChange: 'transform',
       }}
     >
-      <div className="glass-darker p-6 rounded-2xl h-[660px] flex flex-col relative overflow-hidden">
-        <div className="absolute inset-0 border border-white/5 rounded-2xl" />
-
+      <div className="glass-darker p-6 rounded-[12px] h-[660px] flex flex-col relative overflow-hidden">
         {/* Wallet Header */}
         <div className="flex justify-between items-center mb-6 relative">
           <div>
             <h3 className="text-lg font-semibold text-[#31ef90]">
-              My Wallet
+              Wallet demo
             </h3>
             <p className="text-sm text-gray-400">Updated just now</p>
           </div>
           <motion.button
-            className="h-10 w-10 rounded-full bg-[#011826]/20 flex items-center justify-center"
+            className="h-10 w-10 rounded-[12px] bg-[#011826]/20 flex items-center justify-center"
             whileHover={{ 
               scale: 1.05,
               backgroundColor: "rgba(49, 239, 144, 0.1)"
@@ -152,7 +150,7 @@ export default function WalletDemo() {
             <div className="h-full flex flex-col">
               {/* Balance Card */}
               <motion.div 
-                className="bg-[#011826]/20 p-6 rounded-xl mb-6 relative"
+                className="bg-[#011826]/20 p-6 rounded-[12px] mb-6 relative"
                 whileHover={{ backgroundColor: "rgba(1, 24, 38, 0.3)" }}
                 transition={{ duration: 0.2 }}
               >
@@ -172,7 +170,7 @@ export default function WalletDemo() {
                 {tokens.map((token) => (
                   <div
                     key={token.id}
-                    className="glass p-3 rounded-lg relative transition-all duration-200 hover:bg-[#011826]/30"
+                    className="glass p-3 rounded-[12px] relative transition-all duration-200 hover:bg-[#011826]/30"
                   >
                     <div className="flex items-center justify-between relative">
                       <div className="flex items-center gap-3">
@@ -219,10 +217,10 @@ export default function WalletDemo() {
                     className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[80%] p-3 rounded-xl relative ${
+                      className={`max-w-[80%] p-3 rounded-[12px] relative ${
                         message.sender === 'user'
-                          ? 'bg-[#31ef90]/10 rounded-br-none'
-                          : 'bg-[#011826]/40 rounded-bl-none'
+                          ? 'bg-[#31ef90]/10'
+                          : 'bg-[#011826]/40'
                       }`}
                     >
                       <p className="text-sm text-white/90 whitespace-pre-line">{message.text}</p>
@@ -238,7 +236,7 @@ export default function WalletDemo() {
               </div>
 
               {/* Chat Input */}
-              <div className="relative flex gap-2 bg-[#011826]/40 p-2 rounded-xl">
+              <div className="relative flex gap-2 bg-[#011826]/40 p-2 rounded-[12px]">
                 <input
                   type="text"
                   value={inputText}
@@ -249,7 +247,7 @@ export default function WalletDemo() {
                 />
                 <motion.button
                   onClick={handleSendMessage}
-                  className="p-2 rounded-lg bg-[#31ef90] hover:bg-[#31ef90]/80 transition-colors"
+                  className="p-2 rounded-[12px] bg-[#31ef90] hover:bg-[#31ef90]/80 transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

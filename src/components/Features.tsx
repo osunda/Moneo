@@ -36,7 +36,7 @@ export default function Features() {
         >
           <div className="inline-block">
             <motion.span 
-              className="inline-block px-4 py-1 text-sm font-medium text-purple-300 bg-purple-900/30 rounded-full mb-6"
+              className="inline-block px-4 py-1 text-sm font-medium text-blue-400 bg-blue-900/30 rounded-full mb-6"
             >
               PRODUCT
             </motion.span>
@@ -55,7 +55,7 @@ export default function Features() {
                 delay: 0.2
               }}
             >
-              Features
+              Game-Changing Features
             </motion.h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Discover the powerful features that make NeptuneAI your ultimate crypto companion

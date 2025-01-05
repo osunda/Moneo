@@ -21,6 +21,13 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById('features');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <AnimatePresence mode="wait">
       <motion.header 
@@ -48,10 +55,14 @@ export default function Header() {
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <NavLink href="#security">Security</NavLink>
-            <NavLink href="#learn">Learn</NavLink>
-            <NavLink href="#explore">Explore</NavLink>
-            <NavLink href="#support">Support</NavLink>
+            <button 
+              onClick={scrollToFeatures}
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Features
+            </button>
+            <NavLink href="#learn">Pricing</NavLink>
+            <NavLink href="#explore">Docs</NavLink>
             <motion.button
               className="bg-[#31ef90] px-6 py-2 rounded-full font-medium text-[#011826] border-2 border-transparent transition-all duration-200 hover:bg-transparent hover:border-[#31ef90] hover:text-[#31ef90]"
               whileTap={{ scale: 0.95 }}

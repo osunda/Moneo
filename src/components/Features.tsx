@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const features = [
   {
@@ -24,8 +24,20 @@ const features = [
 ];
 
 export default function Features() {
+  const { scrollY } = useScroll();
+  const featureGradientOpacity = useTransform(
+    scrollY,
+    [0, window.innerHeight, window.innerHeight * 2, window.innerHeight * 3],
+    [0, 1, 1, 0]
+  );
+
   return (
-    <section className="py-24 relative">
+    <section id="features" className="py-24 relative">
+      <motion.div 
+        className="feature-gradient"
+        style={{ opacity: featureGradientOpacity }}
+      />
+
       <div className="max-w-[1600px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0 }}
@@ -36,9 +48,9 @@ export default function Features() {
         >
           <div className="inline-block">
             <motion.span 
-              className="inline-block px-4 py-1 text-sm font-medium text-blue-400 bg-blue-900/30 rounded-full mb-6"
+              className="inline-block px-4 py-1 text-sm font-medium text-[#31ef90]"
             >
-              PRODUCT
+              POWERED BY AI
             </motion.span>
             <motion.h2 
               className="text-5xl md:text-6xl font-semibold text-white mb-6"

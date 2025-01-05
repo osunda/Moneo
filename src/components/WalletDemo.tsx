@@ -108,10 +108,13 @@ export default function WalletDemo() {
 
   return (
     <motion.div className="relative w-[400px]">
-      {/* Add neon glow wrapper */}
+      {/* Animated border wrapper */}
+      <div className="absolute inset-0 rounded-[12px] animated-border" />
+      
+      {/* Neon glow */}
       <div className="absolute inset-0 rounded-[12px] neon-glow" />
       
-      <div className="bg-[#00060D]/95 rounded-[12px] h-[480px] flex flex-col relative overflow-hidden">
+      <div className="bg-[#00060d] rounded-[12px] h-[480px] flex flex-col relative overflow-hidden">
         {/* Wallet Header - increased padding */}
         <div className="px-6 py-5">
           <div className="flex justify-between items-center relative">
@@ -169,8 +172,8 @@ export default function WalletDemo() {
             ))}
           </div>
 
-          {/* Bottom separator line */}
-          <div className="w-full h-[2px] bg-white/15" />
+          {/* Bottom separator line - now same as top */}
+          <div className="w-full h-px bg-white/10" />
           
           {/* Chat Input - fixed padding */}
           <div className="px-6 py-4">

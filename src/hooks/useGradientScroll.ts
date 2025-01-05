@@ -7,7 +7,7 @@ export function useGradientScroll() {
     const handleScroll = () => {
       const gradient = document.getElementById('heroGradient');
       if (gradient) {
-        const scrollPercent = window.scrollY / window.innerHeight;
+        const scrollPercent = window.scrollY / (window.innerHeight * 0.05);
         gradient.style.opacity = Math.max(0, 1 - scrollPercent).toString();
       }
     };

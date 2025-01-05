@@ -42,23 +42,23 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center px-4 relative pt-20 md:pt-24 lg:pt-0">
+    <section className="min-h-screen flex items-start px-4 relative pt-16 md:pt-20 lg:pt-24">
       <div className="max-w-[1600px] mx-auto w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-0 lg:gap-16 relative z-10">
           {/* Left side - Text content */}
-          <div className="flex-1 max-w-[650px] w-full text-center lg:text-left z-10">
+          <div className="flex-1 max-w-[600px] w-full text-center lg:text-left z-10">
             <motion.div
               style={{ opacity: titleOpacity, y: titleY }}
-              className="space-y-4 md:space-y-6"
+              className="space-y-4"
             >
               <span 
                 className="inline-block px-4 py-1 text-sm font-medium text-blue-400 bg-blue-900/30 rounded-full"
               >
                 MULTI-CHAIN SUPPORT
               </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold leading-[1.1]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium leading-[1.1]">
                 <span className="inline-flex gap-4">
-                  Your <span className="text-[#31ef90] italic">wallet,</span>
+                  Your <span className="text-[#31ef90]">wallet,</span>
                 </span>
                 <br/>
                 supercharged
@@ -89,7 +89,7 @@ export default function Hero() {
 
           {/* Right side - Wallet Demo */}
           <motion.div 
-            className="flex-1 flex justify-center lg:justify-end scale-[0.85] sm:scale-90 lg:scale-[1.35] -mt-8 sm:-mt-12 lg:mt-0 z-20"
+            className="flex-1 flex justify-center lg:justify-center scale-[0.85] sm:scale-90 lg:scale-[1.35] mt-0 z-20"
             style={{ 
               y: walletY,
               opacity: walletOpacity,

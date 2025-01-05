@@ -57,7 +57,7 @@ export default function Features() {
             >
               Game-Changing Features
             </motion.h2>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-xl mx-auto">
               Discover the powerful features that make NeptuneAI your ultimate crypto companion
             </p>
           </div>
@@ -81,7 +81,7 @@ export default function Features() {
               </div>
               
               <div className="flex-1">
-                <div className="w-[400px] h-[660px] glass-darker rounded-2xl overflow-hidden">
+                <div className="w-[400px] h-[480px] glass-darker rounded-2xl overflow-hidden">
                   <video
                     autoPlay
                     loop

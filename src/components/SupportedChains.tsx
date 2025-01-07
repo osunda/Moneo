@@ -17,7 +17,7 @@ const infiniteChains = Array(20).fill(chains).flat();
 
 export default function SupportedChains() {
   return (
-    <section className="py-0 -mt-96 overflow-hidden mb-32">
+    <section className="py-0 lg:-mt-96 mt-20 overflow-hidden mb-32">
       <div className="max-w-[1600px] mx-auto mb-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

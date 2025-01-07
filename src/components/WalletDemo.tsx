@@ -52,13 +52,24 @@ const tokens: Token[] = [
 ];
 
 export default function WalletDemo() {
-  const [isChatOpen, setIsChatOpen] = useState(true);
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
-      id: 'ai-message-initial',
-      text: "Hi! I'm your AI assistant. I can help you manage your crypto and analyze your finances. Try asking me something!",
-      sender: 'ai' as const,
-      timestamp: new Date()
+      id: 'user-message-1',
+      text: "Hey! what can you do?",
+      sender: 'user',
+      timestamp: new Date(Date.now() - 60000) // 1 minute ago
+    },
+    {
+      id: 'ai-message-1',
+      text: "I can help you with:\n" +
+            "• Batch swapping multiple tokens at once\n" +
+            "• Portfolio analysis and insights\n" +
+            "• Market trends and opportunities\n" +
+            "• Gas optimization strategies\n\n" +
+            "What would you like to explore?",
+      sender: 'ai',
+      timestamp: new Date(Date.now() - 58000) // 58 seconds ago
     }
   ]);
   const [inputText, setInputText] = useState('');
@@ -108,33 +119,25 @@ export default function WalletDemo() {
 
   return (
     <motion.div className="relative w-[400px]">
-      {/* Animated border wrapper */}
-      <div className="absolute inset-0 rounded-[12px] animated-border" />
-      
-      {/* Neon glow */}
-      <div className="absolute inset-0 rounded-[12px] neon-glow" />
-      
-      <div className="bg-[#00060d] rounded-[12px] h-[480px] flex flex-col relative overflow-hidden">
-        {/* Wallet Header - increased padding */}
-        <div className="px-6 py-5">
+      {/* Inner container with background */}
+      <div className="bg-[#000305]/60 rounded-[12px] h-[480px] flex flex-col relative overflow-hidden backdrop-blur-md border border-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.05)]">
+        {/* Wallet Header - updated styling */}
+        <div className="px-6 py-5 bg-[#000305]/80">
           <div className="flex justify-between items-center relative">
             <div>
-              <h3 className="text-lg font-semibold text-[#31ef90]">
+              <h3 className="text-lg font-semibold text-white/90">
                 Neptume AI
               </h3>
             </div>
             <motion.button
-              className="h-10 w-10 rounded-[12px] bg-[#011826]/20 flex items-center justify-center"
-              whileHover={{ 
-                scale: 1.05,
-                backgroundColor: "rgba(49, 239, 144, 0.1)"
-              }}
-              whileTap={{ scale: 0.95 }}
+              className="h-10 w-10 rounded-[12px] border border-white/10 flex items-center justify-center hover:bg-white/5"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setIsChatOpen(!isChatOpen)}
             >
-              <span className="text-[#31ef90] text-xl transition-transform duration-200" 
-                    style={{ transform: isChatOpen ? 'rotate(45deg)' : 'none' }}>
-                {isChatOpen ? '×' : '+'}
+              <span className="text-white/90 text-xl transition-transform duration-200" 
+                    style={{ transform: isChatOpen ? 'none' : 'rotate(45deg)' }}>
+                {isChatOpen ? '+' : '×'}
               </span>
             </motion.button>
           </div>
@@ -143,7 +146,7 @@ export default function WalletDemo() {
         {/* Header separator line */}
         <div className="w-full h-px bg-white/10" />
 
-        <div className="flex-grow overflow-hidden flex flex-col">
+        <div className="flex-grow overflow-hidden flex flex-col bg-[#000305]/40">
           {/* Chat Messages */}
           <div className="flex-grow overflow-y-auto space-y-4 px-6 pt-4">
             {messages.map((message) => (
@@ -156,13 +159,13 @@ export default function WalletDemo() {
                 <div
                   className={`max-w-[80%] p-3 rounded-[12px] relative ${
                     message.sender === 'user'
-                      ? 'bg-[#31ef90]/10'
-                      : 'bg-[#011826]/40'
+                      ? 'bg-[#31ef90]/5 border border-[#31ef90]/30'
+                      : 'bg-[#000305]/80 border border-white/10'
                   }`}
                 >
                   <p className="text-sm text-white/90 whitespace-pre-line">{message.text}</p>
                 </div>
-                <p className="text-[11px] text-white/40 mt-1 px-1">
+                <p className="text-[11px] text-white/50 mt-1 px-1">
                   {message.timestamp.toLocaleTimeString([], { 
                     hour: '2-digit', 
                     minute: '2-digit' 
@@ -172,25 +175,25 @@ export default function WalletDemo() {
             ))}
           </div>
 
-          {/* Bottom separator line - now same as top */}
+          {/* Bottom separator line */}
           <div className="w-full h-px bg-white/10" />
           
-          {/* Chat Input - fixed padding */}
-          <div className="px-6 py-4">
-            <div className="relative flex gap-2 bg-[#011826]/40 p-2 rounded-[12px]">
+          {/* Chat Input - updated styling */}
+          <div className="px-6 py-4 bg-[#000305]/80">
+            <div className="relative flex gap-2 border border-white/10 p-2 rounded-[12px] bg-[#000305]/60">
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 placeholder="Type a message..."
-                className="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none placeholder-white/40 text-white/90"
+                className="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none placeholder-white/50 text-white"
               />
               <motion.button
                 onClick={handleSendMessage}
-                className="p-2 rounded-[12px] bg-[#31ef90] hover:bg-[#31ef90]/80 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="p-2 rounded-[12px] bg-[#31ef90] hover:bg-[#31ef90]/90 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <svg 
                   className="w-5 h-5 text-[#011826]"

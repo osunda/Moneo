@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "./hero.css";
 import BackgroundLines from '@/components/BackgroundLines';
-import DiscordPopup from '@/components/DiscordPopup';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,7 +26,6 @@ export default function RootLayout({
         <BackgroundLines />
         <div id="heroGradient" className="hero-gradient" />
         {children}
-        <DiscordPopup />
       </body>
     </html>
   );

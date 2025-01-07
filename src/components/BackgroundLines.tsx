@@ -82,7 +82,7 @@ const BackgroundLines: React.FC = () => {
     }
 
     const animate = () => {
-      ctx.fillStyle = '#00060D'
+      ctx.fillStyle = '#000305'
       ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
       
       stars.forEach((star) => {

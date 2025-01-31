@@ -2,8 +2,13 @@
 
 import dynamic from 'next/dynamic';
 
-const ClientComponent = dynamic(() => import('./ActualComponent'), {
-  ssr: false // This will only render the component on the client side
+const ActualComponent = dynamic(() => import('./ActualComponent'), {
+  ssr: false,
+  loading: () => (
+    <div className="p-4">
+      <p className="text-gray-600">Loading component...</p>
+    </div>
+  )
 });
 
-export default ClientComponent; 
+export default ActualComponent; 

@@ -159,7 +159,7 @@ export default function WalletDemo() {
                 <div
                   className={`max-w-[80%] p-3 rounded-[12px] relative ${
                     message.sender === 'user'
-                      ? 'bg-[#31ef90]/5 border border-[#31ef90]/30'
+                      ? 'bg-[#31efb6]/5 border border-[#31efb6]/30'
                       : 'bg-[#000305]/80 border border-white/10'
                   }`}
                 >
@@ -191,7 +191,7 @@ export default function WalletDemo() {
               />
               <motion.button
                 onClick={handleSendMessage}
-                className="p-2 rounded-[12px] bg-[#31ef90] hover:bg-[#31ef90]/90 transition-colors"
+                className="p-2 rounded-[12px] bg-[#31efb6] hover:bg-[#31efb6]/90 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

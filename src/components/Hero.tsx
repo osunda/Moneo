@@ -82,7 +82,7 @@ export default function Hero() {
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-medium leading-[1.1]"
               >
                 <span className="inline-flex gap-4">
-                Your <span className="text-[#31ef90]">wallet,</span>
+                Your <span className="text-[#31efb6]">wallet,</span>
                 </span>
                 <br/>
                 supercharged
@@ -104,7 +104,7 @@ export default function Hero() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-[#31ef90] px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl font-medium text-[#011826] shadow-lg shadow-[#31ef90]/10 hover:shadow-xl hover:shadow-[#31ef90]/20 hover:bg-[#31ef90]/90 transition-all duration-200"
+                className="bg-[#31efb6] px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl font-medium text-[#011826] shadow-lg shadow-[#31efb6]/10 hover:shadow-xl hover:shadow-[#31efb6]/20 hover:bg-[#31efb6]/90 transition-all duration-200"
               >
                 Get Started
               </motion.button>

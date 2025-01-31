@@ -64,8 +64,8 @@ body {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(49, 239, 144, 0.08) 0%, transparent 90%),
-    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(49, 239, 144, 0.02) 0%, transparent 100%);
+    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(49, 239, 182, 0.08) 0%, transparent 90%),
+    radial-gradient(ellipse 100% 70% at 50% 0%, rgba(49, 239, 182, 0.02) 0%, transparent 100%);
   opacity: 1;
   transition: opacity 0.5s ease;
   pointer-events: none;
@@ -166,9 +166,9 @@ body {
 .neon-glow {
   pointer-events: none;
   box-shadow: 
-    0 0 2px rgba(49, 239, 144, 0.1),
-    0 0 4px rgba(49, 239, 144, 0.1),
-    0 0 6px rgba(49, 239, 144, 0.1);
+    0 0 2px rgba(49, 239, 182, 0.1),
+    0 0 4px rgba(49, 239, 182, 0.1),
+    0 0 6px rgba(49, 239, 182, 0.1);
   animation: neon-pulse 6s ease-in-out infinite;
   z-index: 1;
 }
@@ -190,7 +190,7 @@ body {
   width: 50%;
   height: 70%;
   background: 
-    radial-gradient(circle at 100% 100%, rgba(49, 239, 144, 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 100% 100%, rgba(49, 239, 182, 0.08) 0%, transparent 70%),
     radial-gradient(circle at 100% 100%, rgba(1, 24, 38, 0.15) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
@@ -211,9 +211,9 @@ body {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(49, 239, 144, 0.6) 20%,
-    rgba(49, 239, 144, 1) 50%,
-    rgba(49, 239, 144, 0.6) 80%,
+    rgba(49, 239, 182, 0.6) 20%,
+    rgba(49, 239, 182, 1) 50%,
+    rgba(49, 239, 182, 0.6) 80%,
     transparent 100%
   );
   -webkit-mask: 
@@ -238,9 +238,9 @@ body {
 .neon-glow {
   pointer-events: none;
   box-shadow: 
-    0 0 2px rgba(49, 239, 144, 0.1),
-    0 0 4px rgba(49, 239, 144, 0.1),
-    0 0 6px rgba(49, 239, 144, 0.1);
+    0 0 2px rgba(49, 239, 182, 0.1),
+    0 0 4px rgba(49, 239, 182, 0.1),
+    0 0 6px rgba(49, 239, 182, 0.1);
   animation: neon-pulse 6s ease-in-out infinite;
   z-index: 1;
 }

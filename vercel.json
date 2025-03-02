@@ -1,11 +1,14 @@
 {
-  "routers": [
+  "version": 2,
+  "builds": [
     {
-      "src": "/",
-      "dest": "/"
-    },
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
     {
-      "src": "/test",
+      "src": "/(.*)",
       "dest": "/"
     }
   ]

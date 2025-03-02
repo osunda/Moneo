@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
+    "build": "tailwindcss ./src/app/globals.css --output ./src/app/output.css && next build",
     "start": "next start",
     "lint": "next lint"
   },
